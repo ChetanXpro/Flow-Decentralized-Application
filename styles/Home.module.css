@@ -1,0 +1,63 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* padding-top: 13px; */
+  /* padding-bottom: 13px; */
+  padding-top: 13px;
+  padding-bottom: 13px;
+  background: rgb(66, 66, 66);
+  height: 50px;
+}
+
+.head {
+  color: rgb(255, 244, 244);
+  font-size: x-large;
+}
+
+.login button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: rgb(255, 255, 255);
+  cursor: "pointer";
+  font-size: large;
+  border: none;
+  background-color: rgb(163, 15, 52);
+  /* margin-right: 90px; */
+}
+
+.main {
+  margin-top: 10px;
+  height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 50px;
+}
+
+.title a {
+  color: #35e8c5;
+  text-decoration: none;
+}
+
+.button-1 {
+  width: "180px";
+  padding: "9px 12px";
+  /* fontweight: "bold"; */
+  font-size: "15px";
+  border: "none";
+  background-color: "rgb(163, 15, 52)";
+  border-radius: "4px";
+  color: "white";
+  cursor: "pointer";
+  margin-left: "3rem";
+}
+
+.Toastify__toast--warn {
+  border: 1px solid #eb5757;
+  border-radius: 50px !important;
+  background: #fae1e2 !important;
+}

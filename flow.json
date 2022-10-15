@@ -1,0 +1,31 @@
+{
+  "networks": {
+    "emulator": "127.0.0.1:3569",
+    "mainnet": "access.mainnet.nodes.onflow.org:9000",
+    "testnet": "access.devnet.nodes.onflow.org:9000"
+  },
+  "contracts": {
+    "HelloWorld": "./flow/cadence/contracts/HelloWorld.cdc"
+  },
+  "accounts": {
+    "emulator-account": {
+      "address": "f8d6e0586b0a20c7",
+      "key": "7a789bb8d68de5dbf5a0ee9a4e99406b36d46baf1e4280fad85ab63dc422667e"
+    },
+    "testnet-account": {
+      "address": "0x3a822511e225831b",
+      "key": {
+        "type": "hex",
+        "index": 0,
+        "signatureAlgorithm": "ECDSA_P256",
+        "hashAlgorithm": "SHA3_256",
+        "privateKey": "bae2b8088aebc2a0f91d8a88179aab2469a536a6a66cda1207fbf97d06371372"
+      }
+    }
+  },
+  "deployments": {
+    "testnet": {
+      "testnet-account": ["HelloWorld"]
+    }
+  }
+}
