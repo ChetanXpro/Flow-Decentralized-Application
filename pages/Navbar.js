@@ -7,7 +7,22 @@ import * as fcl from "@onflow/fcl";
 import "../flow/config";
 import { useState, useEffect } from "react";
 
-const Navbar = ({ user, setIsloggedin }) => {
+const Navbar = ({ setIsloggedin, setTransacton }) => {
+  const [user, setUser] = useState({ loggedIn: null });
+
+  useEffect(() => {
+    fcl.currentUser.subscribe(setUser);
+  }, []);
+
+  useEffect(() => {
+    if (user.addr !== null) {
+      setIsloggedin(true);
+    } else {
+      setIsloggedin(false);
+      setTransacton("");
+    }
+  }, [user]);
+
   const AuthedState = () => {
     return (
       <div

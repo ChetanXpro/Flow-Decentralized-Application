@@ -16,16 +16,13 @@ const Home = () => {
   const [txStatus, setTxStatus] = useState("Run Transaction");
   const [transacton, setTransacton] = useState("");
   const [showTransactonid, setShowTransactonid] = useState(false);
-  const [user, setUser] = useState({ loggedIn: null });
+
   const [loggedIn, setIsloggedin] = useState(false);
   const [transactionTime, setTransactionTime] = useState(0);
   const [showTimeTaken, setShowTimeTaken] = useState(false);
+  const [login, setlogiin] = useState(false);
 
   const time = () => {};
-
-  useEffect(() => {
-    fcl.currentUser.subscribe(setUser);
-  }, []);
 
   let starttime;
   let endtime;
@@ -183,7 +180,7 @@ const Home = () => {
   };
 
   const Control = () => {
-    if (user.loggedIn !== null) {
+    if (loggedIn) {
       return <Show />;
     } else {
       showToastWarning("Please login first", "warn1");
@@ -215,7 +212,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <Navbar user={user} setIsloggedin={setIsloggedin} setUser={setUser} />
+      <Navbar setIsloggedin={setIsloggedin} setTransacton={setTransacton} />
       <Head>
         <title>Duck DApp</title>
         <meta name="description" content="Created by Emerald Academy" />
@@ -268,7 +265,14 @@ const Home = () => {
           {showTimeTaken && (
             <span>
               Your transaction took{" "}
-              {transactionTime !== 0 ? transactionTime : ""} Seconds
+              {transactionTime == 0
+                ? ""
+                : transactionTime > 0
+                ? transactionTime
+                : transactionTime < 0
+                ? transactionTime * -1
+                : ""}{" "}
+              Seconds
             </span>
           )}
           <div
