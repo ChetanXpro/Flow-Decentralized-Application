@@ -1,20 +1,18 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Neucha&family=Silkscreen&family=Ubuntu+Mono&display=swap"); */
-@import url(//db.onlinewebfonts.com/c/b2e75c336df191233b3096682c9ee6be?family=PixelarRegularW01-Regular);
-@import url("https://fonts.googleapis.com/css2?family=Neucha&family=Silkscreen&family=Ubuntu+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "PixelarRegularW01-Regular";
-  font-size: larger;
+  font-family: "Silkscreen", sans-serif;
 }
 
 ::placeholder {
-  font-family: "Silkscreen";
+  font-family: "Silkscreen", sans-serif;
 }
 
 button {
-  font-family: "Silkscreen";
+  font-family: "Silkscreen", sans-serif;
   cursor: pointer;
 }
 

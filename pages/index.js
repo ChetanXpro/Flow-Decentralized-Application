@@ -153,7 +153,7 @@ const Home = () => {
             border: "2px solid lightgreen",
             padding: "4px 6px",
             borderRadius: "3px",
-            marginTop: "7px",
+            marginTop: "4px",
             display: "flex",
             flexDirection: "column",
             textAlign: "center",
@@ -163,7 +163,7 @@ const Home = () => {
             <strong> ID </strong>: {transacton}
           </div>
           <br />
-          <button>
+          <button style={{ fontWeight: "bold" }}>
             <a
               target="_blank"
               rel="noreferrer"
@@ -280,7 +280,7 @@ const Home = () => {
           >
             <button
               style={{
-                width: "150px",
+                width: "190px",
                 padding: "9px 12px",
                 // fontWeight: "bold",
                 fontSize: "15px",
@@ -299,7 +299,7 @@ const Home = () => {
             <button
               className={styles.button}
               style={{
-                width: "180px",
+                width: "250px",
                 padding: "9px 12px",
                 // fontWeight: "bold",
                 fontSize: "15px",
@@ -312,7 +312,7 @@ const Home = () => {
               }}
               onClick={handleButtonClick}
             >
-              {showTransactonid ? "Hide TransactionId" : "Show TransactionId"}
+              {showTransactonid ? "Hide TransactionId" : "Show Transaction Id"}
             </button>
           </div>
           <HandleControl />
