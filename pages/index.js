@@ -4,28 +4,30 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { useState } from "react";
 import Navbar from "./Navbar";
-
 import styles from "../styles/Home.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
+  // Some states
+
   const [greeting, setGreeting] = useState("");
   const [newGreeting, setNewGreeting] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [txStatus, setTxStatus] = useState("Run Transaction");
   const [transacton, setTransacton] = useState("");
   const [showTransactonid, setShowTransactonid] = useState(false);
-
   const [loggedIn, setIsloggedin] = useState(false);
   const [transactionTime, setTransactionTime] = useState(0);
   const [showTimeTaken, setShowTimeTaken] = useState(false);
-  const [login, setlogiin] = useState(false);
 
-  const time = () => {};
+  // Variable to keep track of our transacton execution time
 
   let starttime;
   let endtime;
+
+  // Functon which we can resue to show warning msg toast
+
   const showToastWarning = (text, id) => {
     toast.warn(text, {
       toastId: id,
@@ -39,6 +41,9 @@ const Home = () => {
       theme: "dark",
     });
   };
+
+  // Functon which we can resue to show success msg toast
+
   const showToastSuccess = (text, id) => {
     toast.success(text, {
       toastId: id,
@@ -52,6 +57,8 @@ const Home = () => {
       theme: "dark",
     });
   };
+
+  // Execute script
 
   async function executeScript() {
     const response = await fcl.query({
@@ -68,7 +75,11 @@ const Home = () => {
     setGreeting(response);
   }
 
+  // Run Treansaction
+
   const runTransaction = async () => {
+    // Transaction start
+
     const transactionId = await fcl.mutate({
       cadence: `
       import HelloWorld from 0x3a822511e225831b
@@ -90,12 +101,15 @@ const Home = () => {
       limit: 999,
     });
 
+    // Here we save transaction execution time.
+
     const t = new Date().getTime();
     starttime = new Date(t).getSeconds();
 
+    // Set transaction id
+
     setTransacton(transactionId);
     fcl.tx(transactionId).onceSealed();
-    executeScript();
 
     setNewGreeting("");
     setIsLoading(true);
@@ -114,8 +128,12 @@ const Home = () => {
         clearInterval(intervalId);
         setTxStatus("Sealed!");
 
+        // Transacton end time
+
         const t = new Date().getTime();
         endtime = new Date(t).getSeconds();
+
+        // calc time
 
         if (endtime > starttime) {
           setTransactionTime(endtime - starttime);
@@ -128,10 +146,14 @@ const Home = () => {
 
           setTransactionTime(calc);
         }
+
         setShowTimeTaken(true);
 
+        // Show success toast
         showToastSuccess(`Transaction sealed`, "success1");
         setIsLoading(false);
+
+        // execute script again after completing transaction
         executeScript();
 
         setTimeout(() => setTxStatus("Run Transaction"), 4000);
@@ -142,6 +164,8 @@ const Home = () => {
       }
     });
   };
+
+  // Will show transaction id
 
   const Show = () => {
     if (showTransactonid && transacton) {
@@ -179,6 +203,8 @@ const Home = () => {
     }
   };
 
+  // Control
+
   const Control = () => {
     if (loggedIn) {
       return <Show />;
@@ -195,12 +221,11 @@ const Home = () => {
     }
   };
 
+  // Execute script on page reload
+
   useEffect(() => {
     executeScript();
   }, []);
-  useEffect(() => {
-    executeScript();
-  }, [greeting]);
 
   const handleButtonClick = () => {
     if (showTransactonid) {
@@ -210,6 +235,7 @@ const Home = () => {
     }
   };
 
+  // render
   return (
     <div className={styles.container}>
       <Navbar setIsloggedin={setIsloggedin} setTransacton={setTransacton} />
